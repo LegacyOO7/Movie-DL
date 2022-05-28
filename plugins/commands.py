@@ -533,3 +533,12 @@ async def save_template(client, message):
     template = message.text.split(" ", 1)[1]
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
+
+@Client.on_chat_join_request()
+async def newad(bot, update):
+    print(update.chat.id)
+    await bot.send_message(chat_id=update.from_user.id, text="""I'm Movie Request Bot or You Can Call me as Auto Filter Bot  😍
+
+Here You Can Request Movie's, Just Sent Movie Name With Proper Google Spelling..!!
+Fᴏʀ Mᴏʀᴇ Dᴇᴛᴀɪʟꜱ Cʟɪᴄᴋ /start""")
+    await bot.approve_chat_join_request(chat_id=update.chat.id, user_id=update.from_user.id)
